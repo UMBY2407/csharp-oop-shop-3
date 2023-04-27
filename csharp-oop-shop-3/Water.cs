@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -53,13 +54,13 @@ namespace csharp_shop_3
 			return this.pH;
 		}
 
-		public string getSource()
+		public string GetSource()
 		{
 			return this.source;
 		}
 
 		//SETTERS
-		public void setBrand(string newBrand)
+		public void SetBrand(string newBrand)
 		{
 			this.brand = newBrand;
 		}
@@ -120,13 +121,6 @@ namespace csharp_shop_3
 			$"Categoria: \n";
 
 			return infoProduct;
-		}
-
-		public static double ConvertitoreInGalloni(double litri)
-		{
-			const double galloniLitro = 3.785;
-			double galloni = litri * galloniLitro;
-			return galloni;
 		}
 	}
 }
