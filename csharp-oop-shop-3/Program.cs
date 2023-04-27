@@ -29,23 +29,34 @@ try
 	}
 	catch (Exception e)
 	{
-		Console.WriteLine("Si è generato un problema durante il metodo Drink:");
+		Console.WriteLine("Si è generato un problema mentre si beveva la bottiglia:");
 		Console.WriteLine(e.Message);
 	}
 
-	PhisicalShopCart mioCarrelloDellaSpesa = new PhisicalShopCart(20);
-	mioCarrelloDellaSpesa.AddProduct(sacchettoDiMele);
-	mioCarrelloDellaSpesa.AddProduct(Limone);
-	mioCarrelloDellaSpesa.AddProduct(AcquaSantAnna);
+	try
+	{
+		AcquaSantAnna.Fill(0.7f);
+	}
+	catch (Exception e)
+	{
+		Console.WriteLine("Si è generato un problema mentre si riempiva la bottiglia:");
+		Console.WriteLine(e.Message);
+	}
+
+	PhisicalShopCart mioCarrelloDellaSpesa1 = new PhisicalShopCart(20);
+	mioCarrelloDellaSpesa1.AddProduct(sacchettoDiMele);
+	mioCarrelloDellaSpesa1.AddProduct(Limone);
+	mioCarrelloDellaSpesa1.AddProduct(AcquaSantAnna);
+
+	PhisicalShopCart mioCarrelloDellaSpesa2 = new PhisicalShopCart(20);
+	mioCarrelloDellaSpesa1.AddProduct(sacchettoDiMele);
+	mioCarrelloDellaSpesa1.AddProduct(AcquaSantAnna);
 
 	List<PhisicalShopCart> carrelliSpesaCreati = new List<PhisicalShopCart>();
-	carrelliSpesaCreati.Add(mioCarrelloDellaSpesa);
+	carrelliSpesaCreati.Add(mioCarrelloDellaSpesa1);
+	carrelliSpesaCreati.Add(mioCarrelloDellaSpesa2);
 	Console.WriteLine("I Carrelli della spesa attualmente generati sono: " + PhisicalShopCart.GetTotalGeneratedCarts());
 
-	/*	
-		Console.WriteLine("STAMPIAMO IL CARRELLO");
-		Console.WriteLine(mioCarrelloDellaSpesa.ToString());
-	*/
 }catch(Exception e)
 {
 	Console.WriteLine("Qualcosa è andato storto...");
