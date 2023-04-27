@@ -22,6 +22,10 @@ namespace csharp_shop_3
 			this.maxCapacity = maxCapacity;
 			this.litersInTheBottle = initialLiters;
 			this.pH = pH;
+				if (pH < 0 || pH > 10)
+				{
+					throw new ArgumentException("Il valore inserito non rispetta i limiti del valore del Ph!", "pH");
+				}
 			this.source = source;
 		}
 
@@ -70,25 +74,32 @@ namespace csharp_shop_3
 			}
 			else
 			{
-				Console.WriteLine("Non puoi bere così tanto");
 				litersInTheBottle = 0;
-				
+				throw new ArgumentException("I litri da bere superano i litri nella bottiglia!", "litersToDrink");
 			}
-			
+
+			if(litersInTheBottle == 0)
+			{
+				throw new Exception("Non puoi più bere, la bottiglia è vuota!");
+			}
 		}
 
 		public void Fill(float litersToPutIntoBottle)
 		{
+			if(litersToPutIntoBottle < 0)
+			{
+				throw new ArgumentException("La quantità di litri da riempire risulta negativa!", "litersToPutIntoBottle");
+			}
+
 			if ((litersToPutIntoBottle + litersInTheBottle) <= this.maxCapacity)
 			{
 				this.litersInTheBottle += litersToPutIntoBottle;
 				Console.WriteLine("Hai aggiunto: " + litersToPutIntoBottle + "L" + " ora ci sono " + this.litersInTheBottle);
-
 			}
 			else
 			{
-				Console.WriteLine("Non puoi riempire così tanto");
 				litersInTheBottle = maxCapacity;
+				throw new ArgumentException("La nuova capienza supera la Capienza massima!", "litersToPutIntoBottle");
 			}
 		}
 
@@ -109,11 +120,13 @@ namespace csharp_shop_3
 			$"Categoria: \n";
 
 			return infoProduct;
-
 		}
 
-
-
-
+		public static double ConvertitoreInGalloni(double litri)
+		{
+			const double galloniLitro = 3.785;
+			double galloni = litri * galloniLitro;
+			return galloni;
+		}
 	}
 }

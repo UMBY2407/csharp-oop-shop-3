@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace csharp_shop_3
 {
-	internal class PhisicalShopCart
+	public class PhisicalShopCart
 	{
+		private static int numberOfGeneratedCart = 0;
 		private List<Product> productsInCart;
 		private int maxProductsInCart;
 
@@ -17,12 +18,18 @@ namespace csharp_shop_3
 		{
 			this.maxProductsInCart = maxProductsInCart;
 			this.productsInCart = new List<Product>();
+			numberOfGeneratedCart++;
 		}
 
 		// GETTERS
 		public List<Product> GetProductListInsideCart()
 		{
 			return this.productsInCart;
+		}
+
+		public static int GetTotalGeneratedCarts()
+		{
+			return numberOfGeneratedCart;
 		}
 
 		// SETTERS
